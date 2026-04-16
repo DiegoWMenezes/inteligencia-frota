@@ -221,12 +221,25 @@ Cada veiculo e avaliado em 4 KPIs contra limites criticos, com acao recomendada:
 
 Dashboard interativo com 4 abas conectado ao PostgreSQL em tempo real:
 
-| Aba | Conteudo |
-|-----|----------|
-| **Visao Geral** | KPIs, custo/KM mensal por tipo, receita vs custo, composicao de custos |
-| **Eficiencia** | Consumo real vs esperado, custo por estado, ranking margem |
-| **Manutencao** | Custo por faixa de idade, veiculos alto custo, disponibilidade |
-| **Estrategia** | Classificacao prescritiva, alertas por KPI, projecao forecast |
+### Visao Geral
+KPIs financeiros, custo/KM mensal por tipo de veiculo, receita vs custo por ano, composicao de custos por tipo e regiao.
+
+<img src="img/visao_geral.png" width="800">
+
+### Eficiencia
+Consumo real vs esperado por tipo, custo/KM por estado (27 UFs), ranking de margem operacional.
+
+<img src="img/eficiencia.png" width="800">
+
+### Manutencao
+Custo/KM por faixa de idade do veiculo, manutencao vs combustivel por ano, veiculos alto custo com limiar critico, disponibilidade por tipo.
+
+<img src="img/manutencao.png" width="800">
+
+### Estrategia
+Classificacao prescritiva (intervencao / monitorar / normal), alertas por KPI, projecao de custo/KM (forecast), tabela de acoes com formatacao condicional.
+
+<img src="img/estrategia.png" width="800">
 
 Acesso: `python dashboard/dashboard.py` -> http://localhost:8050
 
