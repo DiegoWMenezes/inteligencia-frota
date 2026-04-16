@@ -380,8 +380,8 @@ psql -U postgres -d inteligencia_frota -c "SELECT * FROM vw_veiculos_alto_custo 
 | Airflow opcional | DAG funciona em modo standalone |
 
 ---
+## Autor
 
-##Autor
-Diego Menezes
+Diego Menezes  
 Data Analyst | Python | SQL | Power BI
 
