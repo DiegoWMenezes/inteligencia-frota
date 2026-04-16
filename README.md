@@ -381,14 +381,7 @@ psql -U postgres -d inteligencia_frota -c "SELECT * FROM vw_veiculos_alto_custo 
 
 ---
 
-## Licenca
+##Autor
+Diego Menezes
+Data Analyst | Python | SQL | Power BI
 
-MIT
-
----
-
-<div align="center">
-
-**Construido com Python, PostgreSQL e dados reais do governo brasileiro**
-
-</div>
