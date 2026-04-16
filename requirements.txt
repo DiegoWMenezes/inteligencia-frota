@@ -1,0 +1,31 @@
+# =============================================================================
+# Inteligência de Frota - Dependências Python
+# =============================================================================
+
+# Core
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Banco de dados
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+
+# Ingestão / API
+requests>=2.31.0
+
+# Analytics preditivo
+scikit-learn>=1.3.0
+statsmodels>=0.14.0
+
+# Dashboard / Visualização
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# Airflow (orquestração - opcional)
+# Descomente para instalar o Airflow:
+# apache-airflow>=2.7.0
+
+# Utilitários
+pyyaml>=6.0
+python-dotenv>=1.0.0

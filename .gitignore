@@ -1,0 +1,57 @@
+# =============================================================================
+# Inteligencia de Frota - Git Ignore
+# =============================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ambiente e secrets
+.env
+.env.local
+
+# Logs
+logs/*.log
+
+# Data files (grandes, regenerados pelo pipeline)
+data/raw/*.csv
+data/inteligencia_frota.db
+staging/*.csv
+
+# Analytics outputs (regenerados pelo pipeline)
+analytics/predictive/*.csv
+analytics/prescriptive/*.csv
+analytics/prescriptive/resumo_executivo_*.txt
+
+# Dashboard
+dashboard/inteligencia_frota.pbix
+dashboard/dash_log.txt
+
+# Airflow
+airflow/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude Code
+.claude/
