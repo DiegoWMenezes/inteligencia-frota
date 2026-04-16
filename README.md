@@ -198,17 +198,6 @@ psql -U postgres -d inteligencia_frota -c "SELECT * FROM vw_kpi_estado ORDER BY 
 psql -U postgres -d inteligencia_frota -c "SELECT * FROM vw_veiculos_alto_custo LIMIT 10;"
 ```
 
----
-
-## Numeros
-
-3 fontes reais + 1 operacional, 18.102 registros de ingestao, 12.000 pos-ETL, 2.500 no DW, 3 tipos de veiculo, 4 tabelas no modelo estrela, 7 views, 4 KPIs monitorados, 3 modelos preditivos, 1.000 veiculos analisados, 1.812 alertas (636 criticos), R2=0.95 na regressao.
-
----
-
-## Decisoes tecnicas
-
-Modelo estrela porque permite qualquer corte analitico com SQL simples. PostgreSQL + SQLite para producao e desenvolvimento local. Fallback em ingestao porque ANP/IBGE/DENATRAN mudam URLs sem aviso. Dados simulados baseados em estatisticas oficiais. Frota focada em 3 tipos porque reflete empresa de saneamento. Views no banco para materializar logica de negocio. psycopg2-binary para evitar compilacao de libpq no Windows. Seed fixa (42) para reprodutibilidade. Limites em tabela para regras de negocio no banco. Airflow opcional porque a DAG funciona em modo standalone.
 
 ---
 
