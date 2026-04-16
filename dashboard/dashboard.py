@@ -122,7 +122,7 @@ app.layout = dbc.Container([
     # Header
     html.Div([
         html.H2("Inteligencia de Frota", style={"color":"white","fontWeight":"700","margin":"0"}),
-        html.P("ANP + IBGE + DENATRAN | PostgreSQL | Analytics 4 Camadas",
+        #html.P("ANP + IBGE + DENATRAN | PostgreSQL | Analytics 4 Camadas",
                style={"color":"#BDC3C7","margin":"0","fontSize":"13px"}),
     ], style={"backgroundColor":C["es"],"padding":"14px 20px","borderRadius":"10px","marginBottom":"12px"}),
 
