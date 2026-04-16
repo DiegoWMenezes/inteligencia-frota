@@ -29,7 +29,7 @@ O pipeline responde as 4 perguntas fundamentais de gestao:
 
 ## Arquitetura
 
-```
+
                           FONTES REAIS
                     +---------+----------+----------+
                     |   ANP   |   IBGE   | DENATRAN |
@@ -63,7 +63,7 @@ O pipeline responde as 4 perguntas fundamentais de gestao:
           |  Regressao + | |   Regras de decisao|
           |  ARIMA       | |   classificacao KPI|
           +--------------+ +--------------------+
-```
+
 
 ---
 
@@ -111,7 +111,6 @@ O pipeline responde as 4 perguntas fundamentais de gestao:
 
 ### Modelo Estrela
 
-```
               dim_tempo          dim_estado
              (sk_tempo)         (sk_estado)
               ano, mes          sigla, regiao
@@ -133,12 +132,12 @@ O pipeline responde as 4 perguntas fundamentais de gestao:
                  (sk_veiculo)
                 tipo, marca, ano
                 combustivel, status
-```
+
 
 ### Volumes no PostgreSQL
 
 | Tabela | Registros | Chave |
-|--------|-----------|-------|
+
 | `dim_tempo` | 24 | sk_tempo |
 | `dim_estado` | 27 | sk_estado |
 | `dim_veiculo` | 500 | sk_veiculo |
@@ -147,7 +146,7 @@ O pipeline responde as 4 perguntas fundamentais de gestao:
 ### 7 Views Analiticas
 
 | View | Funcao |
-|------|--------|
+
 | `vw_resumo_mensal` | KPIs agregados por mes |
 | `vw_kpi_estado` | KPIs por estado e regiao |
 | `vw_kpi_tipo_veiculo` | KPIs por tipo e combustivel |
@@ -162,20 +161,20 @@ O pipeline responde as 4 perguntas fundamentais de gestao:
 
 ### 1. Descritiva - O que esta acontecendo?
 
-```sql
+
 -- Custo por km decomposto em 3 componentes
 SELECT tipo_veiculo, estado, ano, mes,
        custo_combustivel_por_km,
        custo_manutencao_por_km,
        componente_fixo
 FROM vw_kpi_tipo_veiculo;
-```
+
 
 KPIs calculados: custo/km, consumo medio (km/l), utilizacao da frota (%), composicao de custos (%), rentabilidade (margem %).
 
 ### 2. Diagnostica - Por que esta acontecendo?
 
-```sql
+
 -- Veiculos com consumo anomalo (> 30% abaixo do esperado)
 SELECT veiculo_id, estado, tipo_veiculo,
        consumo_real, consumo_esperado,
@@ -189,7 +188,7 @@ Identifica: impacto do preco de combustivel no custo, veiculos com maior custo, 
 ### 3. Preditiva - O que vai acontecer?
 
 | Modelo | Metrica | Resultado |
-|--------|---------|-----------|
+
 | Regressao Linear | R2 | 0.95 |
 | Regressao Linear | MAE | 0.004 |
 | ARIMA(1,1,1) | AIC | -15.66 |
@@ -199,17 +198,17 @@ Forecast de 6 meses para custo/km, com tendencia por tipo de veiculo (ex: Caminh
 
 ### 4. Prescritiva - O que fazer?
 
-```
+
 Resultado: 1.000 veiculos analisados
 +-- 636 -> INTERVENCAO IMEDIATA  (acao: substituir ou revisar)
 +-- 244 -> MONITORAR E PLANEJAR (acao: agendar manutencao)
 +-- 120 -> OPERACAO NORMAL      (acao: manter padrao)
-```
+
 
 Cada veiculo e avaliado em 4 KPIs contra limites criticos, com acao recomendada:
 
 | KPI | Limite Critico | Acao |
-|-----|---------------|------|
+
 | custo_por_km | > R$ 2.50 | Substituir veiculo ou revisar operacao |
 | margem_operacional | < 10% | Rever rota e composicao de custos |
 | disponibilidade | < 75% | Ampliar reserva ou terceirizar |
@@ -247,7 +246,7 @@ Acesso: `python dashboard/dashboard.py` -> http://localhost:8050
 
 ## Estrutura do Projeto
 
-```
+
 inteligencia_frota/
 +-- ingestion/                    # Ingestao de dados
 |   +-- anp_fuel.py              # Precos combustivel (ANP)
@@ -276,7 +275,7 @@ inteligencia_frota/
 +-- logs/
 +-- requirements.txt
 +-- README.md
-```
+
 
 ---
 
@@ -284,7 +283,6 @@ inteligencia_frota/
 
 ### Instalacao
 
-```bash
 # Clonar o repositorio
 git clone https://github.com/diego-dev/inteligencia_frota.git
 cd inteligencia_frota
@@ -296,11 +294,11 @@ source venv/bin/activate        # Linux/Mac
 
 # Instalar dependencias
 pip install -r requirements.txt
-```
+
 
 ### PostgreSQL (producao)
 
-```bash
+
 # Criar banco
 psql -U postgres -c "CREATE DATABASE inteligencia_frota;"
 
@@ -316,33 +314,33 @@ python etl/transform.py
 python load.py --engine postgresql
 python analytics/predictive/forecast.py
 python analytics/prescriptive/decision_rules.py
-```
+
 
 ### Dashboard Web
 
-```bash
+
 python dashboard/dashboard.py
 # Acesse http://localhost:8050
-```
+
 
 ### Apache Airflow (orquestracao agendada)
 
-```bash
+
 export AIRFLOW_HOME=./airflow
 airflow db init
 cp orchestration/fleet_pipeline_dag.py $AIRFLOW_HOME/dags/
 airflow scheduler &
 airflow webserver
 airflow dags trigger fleet_intelligence_pipeline
-```
+
 
 ### Consultas diretas no PostgreSQL
 
-```bash
+
 psql -U postgres -d inteligencia_frota -c "SELECT * FROM vw_resumo_mensal;"
 psql -U postgres -d inteligencia_frota -c "SELECT * FROM vw_kpi_estado ORDER BY custo_medio_por_km DESC;"
 psql -U postgres -d inteligencia_frota -c "SELECT * FROM vw_veiculos_alto_custo LIMIT 10;"
-```
+
 
 ---
 
