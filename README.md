@@ -2,7 +2,7 @@
 
 # Inteligencia de Frota
 
-**Pipeline completo de inteligencia analitica para gestao de frotas de saneamento**
+**Pipeline completo de inteligencia analitica para gestao de frotas**
 
 *Ingestao de dados reais | ETL | Data Warehouse | Analytics 4 camadas | Orquestracao*
 
