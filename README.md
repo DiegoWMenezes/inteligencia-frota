@@ -1,6 +1,6 @@
 # Inteligencia de Frota
 
-Pipeline de inteligencia analitica para gestao de frotas de saneamento.
+Pipeline de inteligencia analitica para gestao de frotas (Caminhão, Pickups e Sedan).
 
 Ingestao de dados reais (ANP, IBGE, DENATRAN), ETL, Data Warehouse, Analytics em 4 camadas e Dashboard interativo.
 
